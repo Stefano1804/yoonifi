@@ -241,6 +241,7 @@
       <li><a href="#over-mij">Over mij</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#projecten">Projecten</a></li>
+
     </ul>
   </nav>
 
@@ -252,12 +253,11 @@
       <div class="blob blob3"></div>
     </div>
     <div class="hero-inner">
-      <div class="hero-eyebrow">Beschikbaar voor projecten</div>
       <h1>Systeembeheer<br>dat <span>gewoon werkt</span></h1>
       <p class="hero-sub">Hoi, ik ben Stefano. Systeembeheerder bij 1key — ik zorg dat infrastructuur stabiel, veilig en schaalbaar is.</p>
       <div class="hero-actions">
         <a href="#projecten" class="btn btn-primary">Bekijk mijn werk</a>
-        <a href="#contact" class="btn btn-ghost">Neem contact op</a>
+        <a href="#over-mij" class="btn btn-ghost">Over mij</a>
       </div>
     </div>
   </header>
@@ -376,24 +376,13 @@
   <hr class="divider">
 
 
+
   <!-- FOOTER -->
   <footer>
     <span>© 2026 Stefano — yoonifi.nl</span>
     <span style="color: var(--muted);">Gebouwd met ❤️ en veel koffie</span>
   </footer>
 
-  <script>
-    function handleSubmit(e) {
-      e.preventDefault();
-      const btn = e.target.querySelector('button');
-      btn.textContent = 'Verstuurd ✓';
-      btn.style.background = 'linear-gradient(135deg, #00e5c3, #7b61ff)';
-      setTimeout(() => {
-        btn.textContent = 'Verstuur bericht';
-        btn.style.background = '';
-        e.target.reset();
-      }, 3000);
-    }
-  </script>
+
 </body>
 </html>
