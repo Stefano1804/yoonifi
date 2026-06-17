@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>한국어 · Korean for TOPIK I &amp; II</title>
+  <meta name="description" content="Learn Korean for TOPIK I & II with flashcards, grammar reference, reading practice, and quizzes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <!-- ===================== NAVBAR ===================== -->
+  <header class="navbar">
+    <div class="nav-inner">
+      <a href="#home" class="brand" data-nav>
+        <span class="brand-mark">한</span>
+        <span class="brand-text">TOPIK<span class="brand-accent">잡</span></span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" id="navLinks">
+        <a href="#flashcards" data-nav>Flashcards</a>
+        <a href="#grammar" data-nav>Grammar</a>
+        <a href="#reading" data-nav>Reading</a>
+        <a href="#quiz" data-nav>Quiz</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================== HOME / HERO ===================== -->
+    <section id="home" class="section hero">
+      <div class="hero-content">
+        <p class="hero-eyebrow">한국어 능력 시험 · TOPIK I &amp; II</p>
+        <h1>Master Korean,<br />one card at a time.</h1>
+        <p class="hero-sub">
+          A focused study toolkit for the TOPIK exam — spaced-repetition flashcards,
+          a searchable grammar reference, interactive reading, and quizzes.
+        </p>
+        <div class="hero-actions">
+          <a href="#flashcards" class="btn btn-primary" data-nav>Start with Flashcards</a>
+          <a href="#grammar" class="btn btn-ghost" data-nav>Browse Grammar</a>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-card"><span class="stat-num" id="statVocab">0</span><span class="stat-label">Vocabulary words</span></div>
+        <div class="stat-card"><span class="stat-num" id="statGrammar">0</span><span class="stat-label">Grammar patterns</span></div>
+        <div class="stat-card"><span class="stat-num">2</span><span class="stat-label">Exam levels</span></div>
+      </div>
+    </section>
+
+    <!-- ===================== FLASHCARDS ===================== -->
+    <section id="flashcards" class="section">
+      <div class="section-head">
+        <h2><span class="section-kr">단어 카드</span> Flashcards</h2>
+        <p>Tap a card to flip it. Rate how well you knew the word — the spaced-repetition engine schedules harder words sooner.</p>
+      </div>
+
+      <div class="fc-controls">
+        <div class="level-tabs" id="fcLevelTabs">
+          <button class="tab active" data-level="topik1">TOPIK I</button>
+          <button class="tab" data-level="topik2">TOPIK II</button>
+        </div>
+        <button class="btn btn-small btn-ghost" id="fcReset">Reset progress</button>
+      </div>
+
+      <div class="progress-wrap">
+        <div class="progress-bar"><div class="progress-fill" id="fcProgressFill"></div></div>
+        <span class="progress-text" id="fcProgressText">0 / 0 mastered</span>
+      </div>
+
+      <div class="flashcard-stage">
+        <div class="flashcard" id="flashcard" tabindex="0" role="button" aria-label="Flashcard, click to flip">
+          <div class="flashcard-inner">
+            <div class="flashcard-face flashcard-front">
+              <span class="fc-pos" id="fcPosFront"></span>
+              <span class="fc-word" id="fcFront">—</span>
+              <span class="fc-hint">tap to flip</span>
+            </div>
+            <div class="flashcard-face flashcard-back">
+              <span class="fc-rom" id="fcRom"></span>
+              <span class="fc-meaning" id="fcMeaning"></span>
+              <span class="fc-example" id="fcExample"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fc-rate" id="fcRate">
+        <button class="btn rate-again" data-q="0">Again</button>
+        <button class="btn rate-hard" data-q="1">Hard</button>
+        <button class="btn rate-good" data-q="2">Good</button>
+        <button class="btn rate-easy" data-q="3">Easy</button>
+      </div>
+      <p class="fc-counter" id="fcCounter"></p>
+    </section>
+
+    <!-- ===================== GRAMMAR ===================== -->
+    <section id="grammar" class="section section-alt">
+      <div class="section-head">
+        <h2><span class="section-kr">문법</span> Grammar Reference</h2>
+        <p>Core sentence patterns for each level, with plain explanations and example sentences.</p>
+      </div>
+
+      <div class="grammar-filters">
+        <div class="level-tabs" id="grLevelTabs">
+          <button class="tab active" data-level="all">All</button>
+          <button class="tab" data-level="TOPIK I">TOPIK I</button>
+          <button class="tab" data-level="TOPIK II">TOPIK II</button>
+        </div>
+        <input type="search" id="grSearch" class="search-input" placeholder="Search patterns or meaning…" />
+      </div>
+
+      <div class="grammar-list" id="grammarList"></div>
+    </section>
+
+    <!-- ===================== READING ===================== -->
+    <section id="reading" class="section">
+      <div class="section-head">
+        <h2><span class="section-kr">읽기 연습</span> Reading Practice</h2>
+        <p>Click any highlighted word to reveal its meaning. Switch passages to match your level.</p>
+      </div>
+
+      <div class="level-tabs" id="rdTabs"></div>
+
+      <article class="reading-card">
+        <h3 class="reading-title" id="rdTitle"></h3>
+        <p class="reading-body" id="rdBody"></p>
+      </article>
+      <div class="reading-tip" id="rdTip">
+        <span>💡</span> Tap the underlined words above to see their meaning.
+      </div>
+    </section>
+
+    <!-- ===================== QUIZ ===================== -->
+    <section id="quiz" class="section section-alt">
+      <div class="section-head">
+        <h2><span class="section-kr">퀴즈</span> Vocabulary Quiz</h2>
+        <p>Multiple-choice vocabulary test. Pick a level and see how many you can get right.</p>
+      </div>
+
+      <div class="quiz-shell" id="quizShell">
+        <!-- start screen -->
+        <div class="quiz-start" id="quizStart">
+          <div class="level-tabs" id="qzLevelTabs">
+            <button class="tab active" data-level="topik1">TOPIK I</button>
+            <button class="tab" data-level="topik2">TOPIK II</button>
+            <button class="tab" data-level="mixed">Mixed</button>
+          </div>
+          <p class="quiz-intro">10 questions · choose the correct English meaning.</p>
+          <button class="btn btn-primary" id="qzStartBtn">Start Quiz</button>
+        </div>
+
+        <!-- question screen -->
+        <div class="quiz-game hidden" id="quizGame">
+          <div class="quiz-topbar">
+            <span class="quiz-count" id="qzCount"></span>
+            <span class="quiz-score" id="qzScore"></span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" id="qzProgressFill"></div></div>
+          <h3 class="quiz-question" id="qzQuestion"></h3>
+          <div class="quiz-options" id="qzOptions"></div>
+        </div>
+
+        <!-- results screen -->
+        <div class="quiz-result hidden" id="quizResult">
+          <div class="result-ring" id="qzRing">
+            <span id="qzFinalScore">0</span><small>/10</small>
+          </div>
+          <h3 id="qzVerdict"></h3>
+          <p id="qzVerdictSub"></p>
+          <button class="btn btn-primary" id="qzRestart">Try Again</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Built for TOPIK I &amp; II learners · 화이팅! 💪</p>
+    <p class="footer-fine">No frameworks — pure HTML, CSS &amp; JavaScript.</p>
+  </footer>
+
+  <!-- word popover for reading -->
+  <div class="word-pop" id="wordPop" hidden>
+    <span class="word-pop-ko" id="wpKo"></span>
+    <span class="word-pop-rom" id="wpRom"></span>
+    <span class="word-pop-en" id="wpEn"></span>
+  </div>
+
+  <!-- Data first, then logic -->
+  <script src="data/vocabulary.js"></script>
+  <script src="data/grammar.js"></script>
+  <script src="js/flashcards.js"></script>
+  <script src="js/grammar.js"></script>
+  <script src="js/reading.js"></script>
+  <script src="js/quiz.js"></script>
+  <script>
+    // ---- Navbar: mobile toggle + active link + smooth scroll ----
+    (function () {
+      const toggle = document.getElementById("navToggle");
+      const links = document.getElementById("navLinks");
+      toggle.addEventListener("click", function () {
+        const open = links.classList.toggle("open");
+        toggle.classList.toggle("open", open);
+        toggle.setAttribute("aria-expanded", String(open));
+      });
+      document.querySelectorAll("[data-nav]").forEach(function (a) {
+        a.addEventListener("click", function () {
+          links.classList.remove("open");
+          toggle.classList.remove("open");
+          toggle.setAttribute("aria-expanded", "false");
+        });
+      });
+
+      // active section highlight
+      const sections = document.querySelectorAll("main section[id]");
+      const navAnchors = document.querySelectorAll(".nav-links a");
+      const obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            navAnchors.forEach(function (a) {
+              a.classList.toggle("active", a.getAttribute("href") === "#" + e.target.id);
+            });
+          }
+        });
+      }, { rootMargin: "-45% 0px -50% 0px" });
+      sections.forEach(function (s) { obs.observe(s); });
+
+      // hero stats
+      const v = (window.VOCABULARY.topik1.length + window.VOCABULARY.topik2.length);
+      document.getElementById("statVocab").textContent = v + "+";
+      document.getElementById("statGrammar").textContent = window.GRAMMAR.length;
+    })();
+  </script>
+</body>
+</html>
